@@ -14,21 +14,32 @@ This is a lightweight, intelligent chatbot built using **FastAPI** for the backe
 
 ```
 
-app/
-├── crud/
-│   └── message.py         # DB operations
-├── db/
-│   ├── session.py         # DB session
-│   └── models.py          # SQLAlchemy models
-├── schemas/
-│   └── message.py         # Pydantic schemas
-├── api/
-│   └── chat.py            # Chat logic & API routes
-train\_model.py             # Script to train AI model
-vectorizer.pkl             # Saved vectorizer
-matrix.pkl                 # Trained question matrix
-answers.pkl                # Trained answers list
-main.py                    # FastAPI entry point
+chatbot-backend/
+├── app/
+│ ├── api/endpoints/
+│ │ └── chat.py # Main chatbot API logic
+│ ├── core/ # (Optional for future configs)
+│ ├── crud/
+│ │ └── message.py # DB CRUD operations
+│ ├── db/
+│ │ ├── base.py # Base model import/export
+│ │ ├── session.py # DB session creation
+│ │ └── message.py # SQLAlchemy message model
+│ │ └── training.py # Session memory model
+│ ├── schemas/
+│ │ └── message.py # Pydantic schemas for validation
+│ └── services/ # (Optional business logic layer)
+│
+├── main.py # FastAPI app entry point
+├── train_model.py # ML model trainer script
+├── seed_data.py # Optional: Seed training data
+├── answers.pkl # Pickled list of answers
+├── matrix.pkl # TF-IDF transformed matrix
+├── vectorizer.pkl # TF-IDF vectorizer
+├── README.md
+├── requirements.txt
+├── public/ # (Static files directory)
+├── venv/ # Python virtual environment
 
 ````
 
@@ -39,8 +50,8 @@ main.py                    # FastAPI entry point
 ### 1. Clone the Repo
 
 ```bash
-git clone https://github.com/yourusername/ai-chatbot-fastapi.git
-cd ai-chatbot-fastapi
+git clone https://github.com/vpmistry13/ai-chat-bot.git
+cd ai-chat-bot
 ````
 
 ### 2. Install Requirements
@@ -138,4 +149,4 @@ Yes Vishal, how can I help you?
 ## 👨‍💻 Author
 
 **Vishal Mistry**
-Full-stack Developer | ReactJS | NextJS| AWS Services | PHP Laravel | AI Enthusiast
+Full-stack Developer | ReactJS | NextJS| AWS Services | PHP Laravel | AI Integrator
