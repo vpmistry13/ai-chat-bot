@@ -12,7 +12,7 @@ This is a lightweight, intelligent chatbot built using **FastAPI** for the backe
 
 ## 🗂️ Project Structure
 
-```
+
 
 chatbot-backend/
 ├── app/
