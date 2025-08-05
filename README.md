@@ -12,7 +12,7 @@ This is a lightweight, intelligent chatbot built using **FastAPI** for the backe
 
 ## 🗂️ Project Structure
 
-```
+
 
 chatbot-backend/
 ├── app/
@@ -74,13 +74,40 @@ This generates:
 * `matrix.pkl`
 * `answers.pkl`
 
+
+
+
 ### 4. Run the App
 
+Thanks! Since your FastAPI app is structured inside the `app` folder and the main entry file is `main.py` (located at the root), you're right to run it like this:
+
 ```bash
-uvicorn main:app --reload
+uvicorn app.main:app --host 0.0.0.0 --port 8000
 ```
 
-Visit: [http://localhost:8000/docs](http://localhost:8000/docs)
+I'll update the **README.md** section accordingly.
+
+---
+
+### ✅ Updated "Run the Backend Server" Section for `README.md`
+
+````md
+## ✅ Run the Backend Server
+
+To start your FastAPI chatbot backend, use the following command:
+
+```bash
+uvicorn app.main:app --host 0.0.0.0 --port 8000
+````
+
+Once the server is running, open your browser and visit:
+
+```
+http://localhost:8000/docs
+```
+
+This will open the interactive Swagger UI where you can test your chatbot endpoints.
+
 
 ---
 
