@@ -7,6 +7,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 from app.schemas.message import MessageCreate, MessageOut
 from app.crud.message import create_message, get_all_messages
 from app.db.session import get_db
+from transformers import pipeline
 
 router = APIRouter()
 
@@ -56,3 +57,22 @@ def post_message(msg: MessageCreate, db: Session = Depends(get_db)):
 @router.get("/messages", response_model=list[MessageOut])
 def read_messages(db: Session = Depends(get_db)):
     return get_all_messages(db)
+
+
+# Load lightweight LLM model (only once at app start)
+llm = pipeline("text-generation", model="distilgpt2")
+
+@router.post("/llm-messages", response_model=MessageOut)
+def post_llm_message(msg: MessageCreate, db: Session = Depends(get_db)):
+    sender = msg.sender
+    db_msg = create_message(db, msg)
+
+    # Generate LLM response
+    generated = llm(msg.message, max_length=100, do_sample=True, temperature=0.7)
+    reply = generated[0]['generated_text']
+
+    return {
+        "id": db_msg.id,
+        "message": reply,
+        "sender": "bot"
+    }
